@@ -9,27 +9,16 @@ const Movie = ({ movie, isFavorite, onToggleFavorite }) => {
       {/* Star button */}
       <button
         onClick={(e) => {
-          e.preventDefault(); // Don't navigate to details
+          e.preventDefault();
           onToggleFavorite(movie);
         }}
-        style={{
-          position: 'absolute',
-          top: '10px',
-          right: '10px',
-          background: 'rgba(255, 255, 255, 0.9)',
-          border: 'none',
-          borderRadius: '50%',
-          width: '35px',
-          height: '35px',
-          cursor: 'pointer',
-          fontSize: '18px',
-          zIndex: 10
-        }}
+        className="star-button"
       >
-        {isFavorite ? <i className="bi bi-star-fill" style={{ color: 'gold' }}></i> : <i className="bi bi-star"></i>}
+        {isFavorite ? <i className="bi bi-star-fill"></i> : <i className="bi bi-star"></i>}
       </button>
 
-      <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none' }}>
+      {/* Movie card with link to details */}
+      <Link to={`/movie/${movie.id}`}>
         <div className="movie-card">
           <img src={`${IMAGE_BASE_URL}${movie.poster_path}`} alt={movie.title} />
           <h3>{movie.title}</h3>

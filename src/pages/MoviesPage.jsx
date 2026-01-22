@@ -74,48 +74,43 @@ const MoviesPage = ({ favorites, toggleFavorite }) => {
 
   return (
     <div className="movie-container">
-      <h1>Movie Collection Database</h1>
+      <h1>Discover Movies</h1>
 
-      {/* Search input */}
-      <input
-        type="text"
-        placeholder="Search for a movie..."
-        // value={searchTerm}
-        onChange={(e) => {
-          setSearchTerm(e.target.value);
-          handleSearch(e.target.value);
-        }}
-        style={{
-          padding: '10px',
-          width: '300px',
-          fontSize: '16px',
-          marginBottom: '20px'
-        }}
-      />
+      {/* Search and filter controls */}
+      <div className="search-filter-container">
+        <input
+          type="text"
+          placeholder="Search for a movie..."
+          value={searchTerm}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+            handleSearch(e.target.value);
+          }}
+          className="search-input"
+        />
 
-      {/* Display genres */}
-      <select
-        value={selectedGenre}
-        onChange={(e) => {
-          setSelectedGenre(e.target.value);
-          handleGenreFilter(e.target.value);
-        }}
-        style={{
-          padding: '10px',
-          fontSize: '16px',
-          marginLeft: '10px'
-        }}
-      >
-        <option value="">All Genres</option>
-        {genres.map((genre) => (
-          <option key={genre.id} value={genre.id}>
-            {genre.name}
-          </option>
-        ))}
-      </select>
+        {/* Genre filter dropdown */}
+        <select
+          value={selectedGenre}
+          onChange={(e) => {
+            const genreId = e.target.value;
+            setSelectedGenre(genreId);
+            handleGenreFilter(genreId);
+          }}
+          className="genre-select"
+        >
+          <option value="">All Genres</option>
+          {genres.map((genre) => (
+            <option key={genre.id} value={genre.id}>
+              {genre.name}
+            </option>
+          ))}
+        </select>
+      </div>
 
-      <p>Total movies: {filmai.length}</p>
+      <p className="movie-count">Showing {filmai.length} movies</p>
 
+      {/* Movie list */}
       <div className="movie-list">
         {filmai.map((filmas) => (
           <Movie key={filmas.id} movie={filmas} isFavorite={favorites.find((fav) => fav.id === filmas.id)} onToggleFavorite={toggleFavorite} />
