@@ -335,6 +335,43 @@
   color: #ffd700;
 }
 
+/* Pagination   */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.pagination button {
+  background: var(--accent-color);
+  color: var(--text-color);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 1.1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination button:not(:disabled):hover {
+  background: var(--highlight-color);
+  border-color: rgba(233, 69, 96, 0.6);
+  transform: translateY(-2px);
+}
+
+.page-indicator {
+  color: var(--text-color);
+  opacity: 0.85;
+  font-weight: 600;
+}
+
 @media (max-width: 900px) {
   .details-card {
     grid-template-columns: 1fr;
